@@ -54,6 +54,14 @@ public class LogMessageWritable implements Writable {
 		this.tid = tid;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	public Text getAction() {
 		return action;
 	}

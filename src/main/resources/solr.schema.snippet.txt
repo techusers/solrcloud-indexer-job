@@ -1,0 +1,5 @@
+<field name="actionType" type="string" indexed="true"  stored="false" omitNorms="true" required="true"/>
+
+<dynamicField name="*_t"    type="lowercase" indexed="true" stored="false" omitNorms="true" multiValued="false"/>
+
+<dynamicField name="*_dt"   type="tdate"     indexed="true" stored="false" omitNorms="true" multiValued="false"/>

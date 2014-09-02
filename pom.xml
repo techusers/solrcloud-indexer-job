@@ -2,29 +2,34 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>my.hadoop</groupId>
-  <artifactId>solrcloud-indexer-job</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>jar</packaging>
-
-  <name>mytechhadoop</name>
-  <url>http://maven.apache.org</url>
+	<groupId>my.hadoop</groupId>
+	<artifactId>solrcloud-indexer-job</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+	<name>solrcloud-indexer-job</name>
+	<url>http://maven.apache.org</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   
   <dependencies>
-  	<dependency>
+  		<dependency>
 			<groupId>org.apache.hadoop</groupId>
 			<artifactId>hadoop-core</artifactId>
-			<version>2.4.0</version>			
+			<version>1.2.0</version>			
 		</dependency>
 		
 		<dependency>
 			<groupId>org.apache.hadoop</groupId>
 			<artifactId>hadoop-common</artifactId>
-			<version>2.4.0</version>			
+			<version>0.23.1</version>			
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.solr</groupId>
+			<artifactId>solr-solrj</artifactId>
+			<version>4.4.0</version>
 		</dependency>
 	</dependencies>
 
@@ -33,7 +38,36 @@
       <id>centralhttp://repo.maven.apache.org/maven2</id>
       <url>http://repo.maven.apache.org/maven2</url>
     </repository>
+    <repository>
+      <id>repo1</id>
+      <url>http://repo1.maven.org/maven2/</url>
+    </repository>
   </repositories>
+  
+   <build>
+		<plugins>
+		
+		<plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <executions>
+                <execution>
+                    <id>copy-dependencies</id>
+                    <phase>prepare-package</phase>
+                    <goals>
+                        <goal>copy-dependencies</goal>
+                    </goals>
+                    <configuration>
+                        <outputDirectory>${project.build.directory}/classes/lib</outputDirectory>
+                        <overWriteReleases>false</overWriteReleases>
+                        <overWriteSnapshots>false</overWriteSnapshots>
+                        <overWriteIfNewer>true</overWriteIfNewer>
+                    </configuration>
+                </execution>
+            </executions>
+        	</plugin>
+	 </plugins>
+	</build>
 
 
 </project>
